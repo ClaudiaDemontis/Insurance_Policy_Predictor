@@ -2,7 +2,7 @@
 import mysql.connector
 from mysql.connector import Error
 
-def esegui_query(query):
+def execute_query(query):
 
     try:
         # Create connection
@@ -17,9 +17,9 @@ def esegui_query(query):
             cursor.execute(query)
             connection.commit()
             cursor.close()
-            print(f"Query eseguita con successo: {query}")
+            print(f"Query executed successfully: {query}")
     except Error as e:
-        print(f"Errore durante l'esecuzione della query: {e}")
+        print(f"Error during query execution: {e}")
         return None
     finally:
         if connection.is_connected():
@@ -27,7 +27,7 @@ def esegui_query(query):
 
 
 # Table Personal_Info
-esegui_query("""CREATE TABLE IF NOT EXISTS Personal_Info (
+execute_query("""CREATE TABLE IF NOT EXISTS Personal_Info (
     personal_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     surname VARCHAR(255),
@@ -36,7 +36,7 @@ esegui_query("""CREATE TABLE IF NOT EXISTS Personal_Info (
 );""")
 
 # Table Regions
-esegui_query("""CREATE TABLE IF NOT EXISTS Regions (
+execute_query("""CREATE TABLE IF NOT EXISTS Regions (
     regional_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255),
     population INT,
@@ -47,7 +47,7 @@ esegui_query("""CREATE TABLE IF NOT EXISTS Regions (
 );""")
 
 # Table Policies
-esegui_query("""CREATE TABLE IF NOT EXISTS Policies (
+execute_query("""CREATE TABLE IF NOT EXISTS Policies (
     policy_id INT PRIMARY KEY AUTO_INCREMENT,
     charges FLOAT,
     start_date DATE,
@@ -56,7 +56,7 @@ esegui_query("""CREATE TABLE IF NOT EXISTS Policies (
 );""")
 
 # Table Clients
-esegui_query("""CREATE TABLE IF NOT EXISTS Clients (
+execute_query("""CREATE TABLE IF NOT EXISTS Clients (
     client_id INT PRIMARY KEY AUTO_INCREMENT,
     age INT,
     sex VARCHAR(10) CHECK (sex IN ('female', 'male')),
