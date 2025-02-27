@@ -34,16 +34,16 @@ with open("Insurance_cleaned.csv", encoding="utf-8") as f:
             if mail in tupla:
                 mail = f"{name.lower()}1.{surname.lower()}@example.com"
 
-        # creo anche l'anno di nascita
+        # Creo anche l'anno di nascita
         age = float(riga[0])
         birth_year = 2025 - age
 
-        # aggiungo nome, cognome, mail nella lista data
+        # Aggiungo nome, cognome, mail nella lista data
         data.append((name, surname, birth_year, mail))
 
 #print(data)
 
-# inserisco i dati nella tabella
+# Inserisco i dati nella tabella
 query_persona_info = """
 INSERT INTO personal_info (name, surname, birth_year, mail) VALUES (%s, %s, %s, %s)"""
 
