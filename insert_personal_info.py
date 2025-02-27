@@ -1,46 +1,22 @@
-# --- INSERT PERSONAL INFO ---
-
-# imports
+# ------- INSERT PERSONAL INFO -------
+# Imports
 import csv
 from faker import Faker
-import mysql.connector
-from mysql.connector import Error
 from funzioni_utili import esegui_query_parametrizzata
 
 # Inserimento dei dati nella tabella
-def esegui_query(query):
-    try:
-        # Creazione connessione
-        connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="olympics_db"
-        )
-        if connection.is_connected():
-            with connection.cursor() as cursor:
-                cursor.execute(query)
-                connection.commit()
-                print(f"Query eseguita con successo: {query}")
-    except Error as e:
-        print(f"Errore durante l'esecuzione della query: {e}")
-    finally:
-        if 'connection' in locals() and connection.is_connected():
-            connection.close()
-
-# leggo il csv
+# Leggo il csv
 with open("Insurance_cleaned.csv", encoding="utf-8") as f:
     dati = csv.reader(f)
+    # Salto la riga dell'intestazione
     next(dati)
 
     fake = Faker()
 
-    fake.email()
-
-    # creo una lista vuota data
+    # Creo una lista vuota a cui appenderò i dati da inserire
     data = []
 
-    # creo i nomi e i cognomi con la libreria faker
+    # Creo i nomi e i cognomi con la libreria faker
     for riga in dati:
 
         if riga[1] == "male":
@@ -50,8 +26,13 @@ with open("Insurance_cleaned.csv", encoding="utf-8") as f:
             name = fake.first_name_female()
             surname = fake.last_name()
 
-        # con questi dati creo le mail
+        # Con questi dati creo le mail
         mail = f"{name.lower()}.{surname.lower()}@example.com"
+        # Mail è un campo 'unique', quindi se abbiamo degli utenti con lo stesso nome dovranno avere delle mail diverse
+        # Errore durante l'esecuzione della query: 1062 (23000): Duplicate entry 'melissa.wheeler@example.com' for key 'mail'
+        for tupla in data:
+            if mail in tupla:
+                mail = f"{name.lower()}1.{surname.lower()}@example.com"
 
         # creo anche l'anno di nascita
         age = float(riga[0])
@@ -60,7 +41,7 @@ with open("Insurance_cleaned.csv", encoding="utf-8") as f:
         # aggiungo nome, cognome, mail nella lista data
         data.append((name, surname, birth_year, mail))
 
-print(data)
+#print(data)
 
 # inserisco i dati nella tabella
 query_persona_info = """
