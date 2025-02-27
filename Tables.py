@@ -1,4 +1,6 @@
 # --- TABLES CREATION ---
+import sys
+print(sys.path)
 import mysql.connector
 from mysql.connector import Error
 
