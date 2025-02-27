@@ -1,3 +1,4 @@
+# --- FUNCTIONS ---
 import mysql.connector
 from mysql.connector import Error
 #uso questa funzione per le query di inserimento dati, modifica dati, ed eliminazione dati
@@ -9,7 +10,7 @@ def esegui_query(query):
             host="localhost",
             user="root",
             password="",
-            database="olympics_db"
+            database="insurance_db"
         )
         if connection.is_connected():
             cursor = connection.cursor()
@@ -32,7 +33,7 @@ def esegui_query_parametrizzata(query, parametri):
             host="localhost",
             user="root",
             password="",
-            database="olympics_db"
+            database="insurance_db"
         )
         if connection.is_connected():
             cursor = connection.cursor()
