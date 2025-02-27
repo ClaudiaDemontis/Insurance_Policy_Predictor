@@ -45,7 +45,7 @@ execute_query("""CREATE TABLE IF NOT EXISTS Regions (
     crime_rate FLOAT,
     unemployment_rate FLOAT,
     avg_income FLOAT,
-    extreme_weather_events INT
+    extreme_weather_events FLOAT
 );""")
 
 # Table Policies
