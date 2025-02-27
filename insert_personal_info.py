@@ -42,12 +42,13 @@ with open("Insurance_cleaned.csv", encoding="utf-8") as f:
 
     # creo i nomi e i cognomi con la libreria faker
     for riga in dati:
-        nome_cognome = fake.name()  # restiruisce nome e cognome
-        lista_nome_cognome = nome_cognome.split()
 
-        # quindi splitto il nome e il cognome
-        name = lista_nome_cognome[0]
-        surname = lista_nome_cognome[1]
+        if riga[1] == "male":
+            name = fake.first_name_male()
+            surname = fake.last_name()
+        else:
+            name = fake.first_name_female()
+            surname = fake.last_name()
 
         # con questi dati creo le mail
         mail = f"{name.lower()}.{surname.lower()}@example.com"
