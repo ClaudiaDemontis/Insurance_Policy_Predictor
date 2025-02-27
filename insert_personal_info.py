@@ -29,7 +29,6 @@ with open("Insurance_cleaned.csv", encoding="utf-8") as f:
         # Con questi dati creo le mail
         mail = f"{name.lower()}.{surname.lower()}@example.com"
         # Mail è un campo 'unique', quindi se abbiamo degli utenti con lo stesso nome dovranno avere delle mail diverse
-        # Errore durante l'esecuzione della query: 1062 (23000): Duplicate entry 'melissa.wheeler@example.com' for key 'mail'
         for tupla in data:
             if mail in tupla:
                 mail = f"{name.lower()}1.{surname.lower()}@example.com"
@@ -41,7 +40,6 @@ with open("Insurance_cleaned.csv", encoding="utf-8") as f:
         # Aggiungo nome, cognome, mail nella lista data
         data.append((name, surname, birth_year, mail))
 
-#print(data)
 
 # Inserisco i dati nella tabella
 query_persona_info = """
