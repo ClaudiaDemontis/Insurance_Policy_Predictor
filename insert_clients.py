@@ -37,8 +37,8 @@ with open("Insurance_cleaned.csv", encoding="utf-8") as f:
         else:
             charges_counter[charges] += 1  # Incrementiamo il contatore
 
-        print(charges )
-        print(id_policy_list)
+        # print(charges )
+        # print(id_policy_list)
 
         #print(charges_counter)
         if charges_counter[charges] != 1:
