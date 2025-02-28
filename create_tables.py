@@ -52,7 +52,7 @@ execute_query("""CREATE TABLE IF NOT EXISTS Regions (
 # Table Policies
 execute_query("""CREATE TABLE IF NOT EXISTS Policies (
     policy_id INT PRIMARY KEY AUTO_INCREMENT,
-    charges DECIMAL(20,5),
+    charges DECIMAL(20,6),
     start_date DATE,
     end_date DATE,
     status VARCHAR(50) CHECK (status IN ('active', 'expired'))
