@@ -11,6 +11,6 @@ print(f"\nNumber  of NaN values per column:\n{df.isna().sum()}")  # Displaying t
 df_modified = df.dropna()  # Creating a new DataFrame without missing values
 
 # Printing the modified DataFrame
-print(df_modified)  # Displaying the cleaned dataset
+print(df_modified)  # Displaying the cleaned dataset ciao
 
 df_modified.to_csv('Insurance_cleaned.csv', index=False)
