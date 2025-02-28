@@ -1,6 +1,6 @@
 import csv
 from funzioni_utili import esegui_query_parametrizzata, recupera_dati_completi
-from project_work.funzioni_utili import recupera_dati
+from funzioni_utili import recupera_dati
 
 # Dizionario per tenere traccia di quante volte è stato usato ogni charges
 charges_counter = {}
