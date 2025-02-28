@@ -1,6 +1,6 @@
 import csv
 from funzioni_utili import esegui_query_parametrizzata, recupera_dati_completi
-from project_work.funzioni_utili import recupera_dati
+from funzioni_utili import recupera_dati
 
 # Dizionario per tenere traccia di quante volte è stato usato ogni charges
 charges_counter = {}
@@ -37,8 +37,8 @@ with open("Insurance_cleaned.csv", encoding="utf-8") as f:
         else:
             charges_counter[charges] += 1  # Incrementiamo il contatore
 
-        # print(charges )
-        # print(id_policy_list)
+        print(charges )
+        print(id_policy_list)
 
         #print(charges_counter)
         if charges_counter[charges] != 1:
