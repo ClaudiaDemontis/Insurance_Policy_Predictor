@@ -68,7 +68,7 @@ def esegui_query_parametrizzata_many(query, parametri):
             host="localhost",
             user="root",
             password="",
-            database="olympics_db"
+            database="insurance_db"
         )
         if connection.is_connected():
             cursor = connection.cursor()
