@@ -82,3 +82,57 @@ def esegui_query_parametrizzata_many(query, parametri):
     finally:
         if connection.is_connected():
             connection.close()
+
+def recupera_dati(query):
+    try:
+        # Creazione connessione
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="insurance_db"
+        )
+        if connection.is_connected():
+            cursor = connection.cursor()  # Restituisce risultati come dizionari
+
+            # Eseguiamo la query
+            cursor.execute(query)
+
+            # Recupero dei dati
+            result = [elem[0] for elem in cursor.fetchmany()]
+
+            cursor.close()
+            return result
+    except Error as e:
+        print(f"Errore durante l'esecuzione della query: {e}")
+        return None
+    finally:
+        if connection.is_connected():
+            connection.close()
+
+def recupera_dati_completi(query):
+    try:
+        # Creazione connessione
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="insurance_db"
+        )
+        if connection.is_connected():
+            cursor = connection.cursor()  # Restituisce risultati come dizionari
+
+            # Eseguiamo la query
+            cursor.execute(query)
+
+            # Recupero dei dati
+            result = [elem for elem in cursor.fetchall()]
+
+            cursor.close()
+            return result
+    except Error as e:
+        print(f"Errore durante l'esecuzione della query: {e}")
+        return None
+    finally:
+        if connection.is_connected():
+            connection.close()
