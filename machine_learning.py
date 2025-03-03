@@ -40,3 +40,20 @@ y_pred = model.predict(X_test)
 # Valutazione del modello
 print('MSE:', mean_squared_error(y_test, y_pred))
 print('R^2:', r2_score(y_test, y_pred))
+
+
+# 1. Analisi Età-Costo
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Grafico di dispersione tra età e costo
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x='age', y='charges', data=df)
+plt.title('Relazione tra Età e Costo della Polizza')
+plt.xlabel('Età')
+plt.ylabel('Costo della Polizza')
+plt.show()
+
+# Calcolare la correlazione tra età e costo
+correlation_age_cost = df['age'].corr(df['charges'])
+print(f'Correlazione tra Età e Costo: {correlation_age_cost}')
