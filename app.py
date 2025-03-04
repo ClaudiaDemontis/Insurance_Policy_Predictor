@@ -12,6 +12,14 @@ def index():
 @app.route("/dati_assicurativi")
 def dati_assicurativi():
     return render_template("dati_assicurativi.html")
+
+@app.route("/gestione_clienti")
+def gestione_clienti():
+    return render_template("gestione_clienti.html")
+
+@app.route("/gestione_polizze")
+def gestione_polizze():
+    return render_template("gestione_polizze.html")
 # def index():
 #     conn = mysql.connector.connect(
 #         host="localhost",
