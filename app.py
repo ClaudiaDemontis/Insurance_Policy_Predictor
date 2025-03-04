@@ -6,8 +6,12 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def home():
-    return render_template("home.html")
+def index():
+    return render_template("esempio_sito.html")
+
+@app.route("/dati_assicurativi")
+def dati_assicurativi():
+    return render_template("dati_assicurativi.html")
 # def index():
 #     conn = mysql.connector.connect(
 #         host="localhost",
