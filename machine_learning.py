@@ -7,6 +7,10 @@ import math
 # Carica il dataset
 df = pd.read_csv('Insurance_cleaned.csv')
 
+#matrice di confusione
+sns.pairplot(df,diag_kind='kde')
+plt.show()
+
 #converto le variabili non numeriche
 df = pd.get_dummies(df, columns=['sex', 'smoker', 'region'], drop_first=True)
 
@@ -73,11 +77,22 @@ print('RMSE:', math.sqrt(mean_squared_error(y_test, y_pred)))
 # plt.ylabel("Frequenza")
 # plt.title("Distribuzione degli errori della regressione")
 # plt.show()
-#
-# 
-#
-#
-# #sns.pairplot(df,diag_kind='kde')
+
+#df["charges"].mean()
+
+import scipy.stats as stats
+import matplotlib.pyplot as plt
+
+# Calcola i residui (errori della regressione)
+residuals = y_test - model.predict(X_test)
+
+# Q-Q Plot per verificare la normalità dei residui
+plt.figure(figsize=(8,6))
+stats.probplot(residuals, dist="norm", plot=plt)  # Confronta con distribuzione normale
+plt.title("Q-Q Plot dei Residui")
+plt.show()
+
+
 
 
 
