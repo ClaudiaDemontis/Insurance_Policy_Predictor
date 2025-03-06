@@ -14,6 +14,7 @@ plt.show()
 #converto le variabili non numeriche
 df = pd.get_dummies(df, columns=['sex', 'smoker', 'region'], drop_first=True)
 
+
 # Esplora i primi record del dataset
 print(df.head())
 
@@ -35,9 +36,6 @@ from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 # Seleziona le variabili indipendenti e dipendenti
 X = df.drop(columns=['charges'])
 y = df['charges']
-
-#grafico iniziale
-
 
 # Suddivisione in training e test set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -92,6 +90,57 @@ stats.probplot(residuals, dist="norm", plot=plt)  # Confronta con distribuzione 
 plt.title("Q-Q Plot dei Residui")
 plt.show()
 
+
+#grado polimnomiale complesso
+from sklearn.preprocessing import PolynomialFeatures
+
+# Seleziona le variabili indipendenti e dipendenti
+X = df.drop(columns=['charges'])
+y = df['charges']
+
+# TRAINING ERROR PER DEGREE
+train_rmse_errors = []
+# TEST ERROR PER DEGREE
+test_rmse_errors = []
+
+
+# Ciclo su diversi gradi polinomiali
+for d in range(1, 10):
+    # CREATE POLY DATA SET FOR DEGREE "d"
+    polynomial_converter = PolynomialFeatures(degree=d, include_bias=False)
+    poly_features = polynomial_converter.fit_transform(X)
+
+    # SPLIT THIS NEW POLY DATA SET
+    X_train, X_test, y_train, y_test = train_test_split(poly_features, y, test_size=0.3, random_state=101)
+
+    # TRAIN ON THIS NEW POLY SET
+    model = LinearRegression(fit_intercept=True)
+    model.fit(X_train, y_train)
+
+    # PREDICT ON BOTH TRAIN AND TEST
+    train_pred = model.predict(X_train)
+    test_pred = model.predict(X_test)
+
+    # Calculate Errors
+
+    # Errors on Train Set
+    train_RMSE = math.sqrt(mean_squared_error(y_train, train_pred))
+
+    # Errors on Test Set
+    test_RMSE = math.sqrt(mean_squared_error(y_test, test_pred))
+
+    # Append errors to lists for plotting later
+    train_rmse_errors.append(train_RMSE)
+    test_rmse_errors.append(test_RMSE)
+
+# Plotting
+plt.plot(range(1, 10), train_rmse_errors, label='TRAIN')
+plt.plot(range(1, 10), test_rmse_errors, label='TEST')
+plt.xlabel("Polynomial Complexity (Degree)")
+plt.ylabel("RMSE")
+plt.legend()
+plt.title("RMSE vs Polynomial Degree")
+plt.show()
 
 
 
