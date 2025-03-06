@@ -1,9 +1,8 @@
-# Caricamento e esplorazione del dataset
+#Import section
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import math
-# Costruzione del modello di regressione lineare
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
@@ -11,10 +10,7 @@ from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 from sklearn.compose import ColumnTransformer
 import scipy.stats as stats
 import matplotlib.pyplot as plt
-#grado polimnomiale complesso
 from sklearn.preprocessing import PolynomialFeatures
-
-
 
 def pipe_line(features, y, test_size = 0.2):
     # SPLIT THIS NEW POLY DATA SET
@@ -27,9 +23,7 @@ def pipe_line(features, y, test_size = 0.2):
         [('scaler', StandardScaler(), colonne_numeriche)  # Applica lo scaling solo alle colonne numeriche
          ], remainder='passthrough')  # Mantiene inalterate le altre colonne (variabili dummy) #
 
-
     # Feature scaling
-
     # we are going to scale ONLY the features (i.e. the X) and NOT the y!
     X_train_scaled = preprocessor.fit_transform(X_train)  # fitting to X_train and transforming them
     X_test_scaled = preprocessor.transform(X_test)  # transforming X_test. DO NOT FIT THEM!
@@ -53,8 +47,6 @@ def pipe_line(features, y, test_size = 0.2):
     # Errors on Test Set
     test_RMSE = math.sqrt(mean_squared_error(y_test, test_pred))
 
-
-
     return {
         "X_train_scaled": X_train_scaled ,
         "X_test_scaled" : X_test_scaled,
@@ -68,18 +60,17 @@ def pipe_line(features, y, test_size = 0.2):
 
     }
 
-
-# Carica il dataset
+# Caricamento e esplorazione del dataset
 df = pd.read_csv('Insurance_cleaned.csv')
 
-#matrice di confusione
+#Matrice di confusione
 sns.pairplot(df,diag_kind='kde')
 plt.show()
 
-
-
-# Esplora i primi record del dataset
+# Esplorazione dei primi record del dataset
 print(df.head())
+
+# Stampa a video delle colonne
 print(df.columns)
 
 # Statistiche descrittive
@@ -91,26 +82,22 @@ sns.histplot(df['charges'], kde=True)
 plt.title('Distribuzione del costo delle polizze')
 plt.show()
 
-
-
-
-#converto le variabili non numeriche
+#Conversione delle variabili non numeriche
 df = pd.get_dummies(df, columns=['sex', 'smoker', 'region'], drop_first=True)
 
-# Seleziona le variabili indipendenti e dipendenti
+# Costruzione del modello di regressione lineare
+# Selezione delle variabili indipendenti e dipendenti
 X = df.drop(columns=['charges'])
 y = df['charges']
-#######################################################################################
+
 results = pipe_line(X,y)
-#######################################################################################
+
 # Valutazione del modello
 print("\nQueste sono le metriche di una regressione lineare")
 print('MSE:', mean_squared_error(results["y_test"], results["test_pred"]))
 print('MAE:', mean_absolute_error(results["y_test"], results["test_pred"]))
 print('RMSE:', math.sqrt(mean_squared_error(results["y_test"], results["test_pred"])))
 print("Media della colonna charges: ",df["charges"].mean())
-
-
 
 # Calcola i residui (errori della regressione)
 residuals = results["y_test"] - results["test_pred"]
@@ -142,14 +129,10 @@ stats.probplot(residuals, dist="norm", plot=plt)  # Confronta con distribuzione 
 plt.title("Q-Q Plot dei Residui di polinomiale di grado 2")
 plt.show()
 
-
-
-
 # TRAINING ERROR PER DEGREE
 train_rmse_errors = []
 # TEST ERROR PER DEGREE
 test_rmse_errors = []
-
 
 # Ciclo su diversi gradi polinomiali
 for d in range(1, 5):
