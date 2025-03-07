@@ -4,7 +4,7 @@ Il progetto **Insurance Policy Predictor** ha lo scopo di analizzare e prevedere
 
 ## Team
 
-Il progetto è stato realizzato da: Aurora Betta, Claudia Demontis, Francesco Bassani, Maria Grazia Cioffi, Meryem Karim, Valentina Gesù.
+Il progetto è stato realizzato da: **Aurora Betta, Claudia Demontis, Francesco Bassani, Maria Grazia Cioffi, Meryem Karim, Valentina Gesù**.
 
 ## Link notebook: https://colab.research.google.com/drive/1pBV-iv2ETY6kHSNv2TYoJxt-0uvBWECB?usp=sharing 
 
