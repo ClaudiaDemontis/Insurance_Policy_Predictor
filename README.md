@@ -56,7 +56,7 @@ L'applicazione web è sviluppata utilizzando **Flask** e permette di:
 
 #### File Principali di Machine Learning
 
-1. **`testPredict.py`**:
+1. **`machine_learning.py`**:
    - Carica il dataset `Insurance_cleaned.csv`.
    - Preprocessa i dati (scalatura e codifica delle variabili categoriche).
    - Addestra un modello di regressione lineare.
@@ -67,7 +67,7 @@ L'applicazione web è sviluppata utilizzando **Flask** e permette di:
    - Carica un modello di regressione lineare pre-addestrato (`modello_regressione_lineare.pkl`) e il preprocessore (`preprocessor.pkl`).
    - Fa previsioni su nuovi dati inseriti manualmente.
 
-3. **`machine_learning.py`**:
+3. **`testPredict.py`**:
    - Esegue un'analisi esplorativa dei dati (EDA) con visualizzazioni.
    - Addestra modelli di regressione lineare e polinomiale.
    - Confronta le prestazioni dei modelli utilizzando RMSE.
