@@ -31,7 +31,7 @@ Il progetto è stato realizzato da: **Aurora Betta, Claudia Demontis, Francesco 
 - **`insert_policies.py`**: Script per l'inserimento delle polizze assicurative nel database.
 - **`insert_regions.py`**: Script per l'inserimento delle regioni nel database.
 - **`machine_learning.py`**: Script per l'analisi esplorativa dei dati e l'applicazione di modelli di Machine Learning.
-- **`web_app_menu/`**: Cartella contenente l'applicazione Flask.
+- **`web_app_finale/`**: Cartella contenente l'applicazione Flask.
   - **`app.py`**: File principale dell'applicazione Flask.
   - **`templates/`**: Contiene i file HTML per l'interfaccia utente.
   - **`static/`**: Contiene file CSS, JavaScript e immagini per l'interfaccia utente.
