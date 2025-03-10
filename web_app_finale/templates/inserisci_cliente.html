@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="it">
+
+    <head>
+        <meta charset="utf-8">
+        <title>LifeSure - Life Insurance Website Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:slnt,wght@-10..0,100..900&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/animate/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/lightbox/css/lightbox.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+        <!-- Template Stylesheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body>
+
+<!--     <style>-->
+<!--        /* Modale per la password */-->
+<!--        .modal {-->
+<!--            display: none; /* Nascondi la modale inizialmente */-->
+<!--            position: fixed;-->
+<!--            z-index: 1;-->
+<!--            left: 0;-->
+<!--            top: 0;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background-color: rgba(0, 0, 0, 0.5);-->
+<!--        }-->
+
+<!--        /* Contenuto della modale */-->
+<!--        .modal-content {-->
+<!--            background-color: #fff;-->
+<!--            padding: 20px;-->
+<!--            margin: 10% auto; /* Modifica il margine superiore per spostarla un po' più in alto */-->
+<!--            width: 300px;-->
+<!--            border-radius: 5px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        /* Rimosso il CSS relativo alla X (nessun stile per .close) */-->
+<!--    </style>-->
+
+<!--    &lt;!&ndash; Codice per protezione con password &ndash;&gt;-->
+<!--    <div id="passwordModal" class="modal">-->
+<!--        <div class="modal-content">-->
+<!--            &lt;!&ndash; Non c'è più la X &ndash;&gt;-->
+<!--            <h2>Inserire password amministratore</h2>-->
+<!--            <input type="password" id="passwordInput" placeholder="Password" class="form-control mb-3">-->
+<!--            <button id="submitPassword" class="btn btn-primary">Accedi</button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid nav-bar px-0 px-lg-4 py-lg-0">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a href="#" class="navbar-brand p-0">
+                        <h1 class="text-primary mb-0"><i class="fab fa-slack me-2"></i> InsuranceDB</h1>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav mx-0 mx-lg-auto">
+                            <a href="{{ url_for('index') }}" class="nav-item nav-link active">Home</a>
+                            <a href="{{ url_for('dati_assicurativi') }}" class="nav-item nav-link">Dataset</a>
+                            <a href="{{ url_for('premio') }}" class="nav-item nav-link">Preventivo</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link" data-bs-toggle="dropdown">
+                                    <span class="dropdown-toggle">Gestione Clienti</span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="{{ url_for('gestione_clienti') }}" class="dropdown-item">Gestisci Clienti</a>
+                                    <a href="{{ url_for('inserisci_cliente') }}" class="dropdown-item">Inserisci Cliente</a>
+                                </div>
+                            </div>
+                            <div class="nav-btn px-3">
+                                <a href="{{ url_for('about') }}" class="btn btn-primary rounded-pill py-2 px-4 ms-3 flex-shrink-0">Il Progetto</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Feature Start -->
+        <div class="container-fluid feature bg-light py-5">
+            <div class="container py-5">
+                <div class="d-flex justify-content-center align-items-center flex-column text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">Sezione</h4>
+                    <h1 class="display-4 mb-4">Inserisci Cliente</h1>
+                    <p class="mb-0">
+                        Compila i campi sottostanti per registrare un nuovo cliente nel sistema
+                    </p>
+                </div>
+
+                <!-- Dati Cliente Start -->
+                <div class="wow fadeInUp" data-wow-delay="0.3s">
+                    <form action="/gestione_clienti/inserisci_cliente" method="POST" style="max-width: 800px; margin: 0 auto;">
+                        <!-- Nome e Cognome -->
+                        <div class="form-row mb-3">
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="nome" class="text-center w-100">Nome</label>
+                                <input type="text" class="form-control text-center" id="nome" name="nome" placeholder="Inserisci il nome" required style="width: 100%; max-width: 800px;">
+                            </div>
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="cognome" class="text-center w-100">Cognome</label>
+                                <input type="text" class="form-control text-center" id="cognome" name="cognome" placeholder="Inserisci il cognome" required style="width: 100%; max-width: 800px;">
+                            </div>
+                        </div>
+
+                        <!-- Anno di Nascita e Email -->
+                        <div class="form-row mb-3">
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="anno_nascita" class="text-center w-100">Anno di Nascita</label>
+                                <input type="number" class="form-control text-center" id="anno_nascita" name="anno_nascita" placeholder="Anno di nascita" min="1900" max="2025" required style="width: 100%; max-width: 800px;">
+                            </div>
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="email" class="text-center w-100">Email</label>
+                                <input type="email" class="form-control text-center" id="email" name="email" placeholder="Inserisci la tua email" required style="width: 100%; max-width: 800px;">
+                            </div>
+                        </div>
+
+                        <!-- Sesso e BMI -->
+                        <div class="form-row mb-3">
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="sesso" class="text-center w-100">Sesso</label>
+                                <select class="form-control text-center" id="sesso" name="sesso" required style="width: 100%; max-width: 800px;">
+                                    <option value="" disabled selected>Seleziona Sesso</option>
+                                    <option value="Uomo">Uomo</option>
+                                    <option value="Donna">Donna</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="bmi" class="text-center w-100">BMI</label>
+                                <input type="number" step="0.1" class="form-control text-center" id="bmi" name="bmi" placeholder="Inserisci il BMI" required style="width: 100%; max-width: 800px;">
+                            </div>
+                        </div>
+
+                        <!-- Numero di Figli -->
+                        <div class="form-row mb-3">
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="numero_figli" class="text-center w-100">Numero di Figli</label>
+                                <input type="number" class="form-control text-center" id="numero_figli" name="numero_figli" placeholder="Inserisci il numero di figli" min="0" style="width: 100%; max-width: 800px;">
+                            </div>
+                        </div>
+
+                        <!-- Fumatore -->
+                        <div class="form-row mb-3">
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="fumatore" class="text-center w-100">Fumatore</label>
+                                <select class="form-control text-center" id="fumatore" name="fumatore" required style="width: 100%; max-width: 800px;">
+                                    <option value="" disabled selected>Seleziona Fumatore</option>
+                                    <option value="Sì">Sì</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Regione di Residenza -->
+                        <div class="form-row mb-3">
+                            <div class="form-group col-md-6 mx-auto">
+                                <label for="regione_residenza" class="text-center w-100">Regione di Residenza</label>
+                                <select class="form-control text-center" id="regione_residenza" name="regione_residenza" required style="width: 100%; max-width: 800px;">
+                                    <option value="" disabled selected>Seleziona Regione</option>
+                                    <option value="Northeast">Northeast</option>
+                                    <option value="Northwest">Northwest</option>
+                                    <option value="Southeast">Southeast</option>
+                                    <option value="Southwest">Southwest</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Prezzo Polizza -->
+                        <div class="form-group col-md-6 mx-auto">
+                            <label for="premium" class="text-center w-100">Prezzo Polizza</label>
+                            <input type="number" step="0.1" class="form-control text-center" id="premium" name="premium" value="{{ prezzo }}" placeholder="Inserisci il prezzo della polizza" required style="width: 100%; max-width: 800px;">
+                        </div>
+
+                        <!-- Data Inizio -->
+                        <div class="form-group col-md-6 mx-auto">
+                            <label for="date" class="text-center w-100">Data Inizio</label>
+                            <input type="date" class="form-control text-center" id="date" name="date" value="{{ oggi }}" required style="width: 100%; max-width: 800px;">
+                        </div>
+                        <br/>
+                        <br/>
+                        <!-- Bottone di Invio -->
+                        <div style="margin-bottom: 20px;">
+                            <button type="submit" class="btn btn-primary rounded-pill py-2 px-4" style="display: block; margin: 0 auto;">Inserisci Cliente</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Feature End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-xl-9">
+                        <div class="mb-5">
+                            <div class="row g-4">
+                                <div class="col-md-6 col-lg-6 col-xl-5">
+                                    <div class="footer-item">
+                                        <a href="index.html" class="p-0">
+                                            <h3 class="text-white"><i class="fab fa-slack me-3"></i> InsuranceDB</h3>
+                                        </a>
+                                        <p class="text-white mb-4"> Il sistema online sicuro e intuitivo per la gestione e il monitoraggio dei clienti e delle loro polizze sanitarie
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="footer-item">
+                            <h4 class="text-white mb-2">Il nostro Team</h4>
+                            <p class="text-white mb-0">
+                                <ul class="list-unstyled mb-0"> <!-- Rimosso il margine inferiore della lista -->
+                <li class="text-white">Aurora Betta</li>
+                <li class="text-white">Francesco Bassani</li>
+                <li class="text-white">Claudia Demontis</li>
+                <li class="text-white">Maria Grazia Cioffi</li>
+                <li class="text-white">Meryem Karim</li>
+                <li class="text-white">Valentina Gesù</li>
+            </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Copyright Start -->
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center justify-content-center">
+                    <div class="col-md-6 text-center mb-md-0">
+                        <span class="text-body">
+                            <a href="#" class="border-bottom text-white">
+                                <i class="fas fa-copyright text-light me-2"></i>InsuranceDB
+                            </a>, All right reserved.
+                        </span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-start text-body">
+                        Designed By
+                        <a class="border-bottom" href="https://www.facebook.com" target="_blank">Our Team</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+<!--    &lt;!&ndash; Script per la modale &ndash;&gt;-->
+<!--    <script>-->
+<!--      // Password da verificare-->
+<!--var correctPassword = "dami";  // Modifica con la tua password-->
+
+<!--// Modale e variabili-->
+<!--var modal = document.getElementById("passwordModal");-->
+<!--var submitPassword = document.getElementById("submitPassword");-->
+<!--var passwordInput = document.getElementById("passwordInput");-->
+
+<!--// Mostra la modale all'apertura della pagina-->
+<!--window.onload = function() {-->
+<!--    modal.style.display = "block";-->
+<!--}-->
+
+<!--// Verifica la password-->
+<!--submitPassword.onclick = function() {-->
+<!--    var userPassword = passwordInput.value;-->
+
+<!--    if (userPassword === correctPassword) {-->
+<!--        modal.style.display = "none";-->
+<!--        alert("Password corretta. Accesso consentito.");-->
+<!--    } else {-->
+<!--        alert("Password errata. Accesso negato.");-->
+<!--        window.location.href = "http://127.0.0.1:5000"; // Reindirizza a pagina di errore-->
+<!--    }-->
+<!--}-->
+
+<!--// Aggiungi l'evento per la pressione del tasto "Enter"-->
+<!--passwordInput.addEventListener('keydown', function(event) {-->
+<!--    if (event.key === "Enter") {-->
+<!--        submitPassword.click();  // Simula il click sul bottone di invio-->
+<!--    }-->
+<!--});-->
+
+<!--    </script>-->
+
+    </body>
+
+
+</html>
+
+
